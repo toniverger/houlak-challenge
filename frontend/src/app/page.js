@@ -1,7 +1,18 @@
+'use client'
 import Image from 'next/image'
 import styles from './page.module.css'
 
 export default function Home() {
+
+const fetchData = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/')
+      console.log(await response.json())
+    } catch (e) {
+      alert(e)
+    }
+  }
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -37,6 +48,10 @@ export default function Home() {
           height={37}
           priority
         />
+      </div>
+
+      <div>
+        <button onClick={fetchData}>Fetch Data</button>
       </div>
 
       <div className={styles.grid}>
