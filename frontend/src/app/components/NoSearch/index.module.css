@@ -1,0 +1,22 @@
+.container {
+  text-align: center;
+  color: #aaa;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.title {
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
+}
+
+.paragraph {
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+}
