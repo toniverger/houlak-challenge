@@ -25,9 +25,16 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (search) {
-      const data = AlbumService.fetchAlbums(search);
-      setTestArray(Array.from({ length: data }, (_, index) => index));
+    const fetchData = async () => {
+      try {
+        const data = await AlbumService.fetchAlbums(search);
+        setTestArray(data.items);
+      } catch (error) {
+        // Handle error
+      }
+    };
+    if (search && search.trim() !== "") {
+      fetchData(search);
     }
   }, [search]);
 
@@ -46,9 +53,18 @@ export default function Home() {
             ) : (
               testArray.map((album, index) => {
                 return (
-                  <Zoom in style={{ transitionDelay: `${index * 300}ms` }}>
+                  <Zoom
+                    in
+                    style={{ transitionDelay: `${index * 300}ms` }}
+                    key={album.id}
+                  >
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <AlbumCard />
+                      <AlbumCard
+                        name={album.name}
+                        releaseDate={album.release_date}
+                        songs={album.total_tracks}
+                        image={album.images[0].url}
+                      />
                     </Grid>
                   </Zoom>
                 );

@@ -20,6 +20,7 @@ const SearchBar = ({ setSearch }) => {
           fullWidth
           style={{ marginRight: "10px" }}
           onChange={handleSearchChange}
+          required
         />
         <IconButton
           size="large"

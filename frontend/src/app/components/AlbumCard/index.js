@@ -6,29 +6,31 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-export default function AlbumCard() {
+export default function AlbumCard({ name, releaseDate, songs, image }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image="/contemplative-reptile.jpg"
+          image="https://upload.wikimedia.org/wikipedia/en/f/fd/Coldplay_-_Parachutes.png"
           alt="green iguana"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            Lanzado el: {releaseDate}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {songs} canciones
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
+          Ver en sporify
         </Button>
       </CardActions>
     </Card>

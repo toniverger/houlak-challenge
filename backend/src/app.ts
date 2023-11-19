@@ -1,5 +1,6 @@
-import express, {json} from 'express'
+import express, { json } from 'express'
 import { corsMiddelware } from './middlewares/cors'
+import artistRoutes from "./routes/artists"
 
 const PORT = process.env.PORT ?? 8080
 
@@ -10,9 +11,7 @@ app.disable('x-powered-by')
 app.use(json())
 app.use(corsMiddelware())
 
-app.use('/', (_, res) => {
-    res.json("hola mundo")
-})
+app.use('/api/artist', artistRoutes)
 
 
 app.listen(PORT, () => {
