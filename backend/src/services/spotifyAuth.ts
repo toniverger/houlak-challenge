@@ -1,13 +1,12 @@
 import axios from 'axios';
 import config from '../config';
+import { SpotifyAuthResponse } from '../types';
 
 const clientId = '83dc7c80f05042209bf90590760eea2a';
 const clientSecret = 'be1504ba6e8c4335a04ee81499b0a96c';
 const tokenEndpoint = 'https://accounts.spotify.com/api/token';
 
-interface SpotifyAuthResponse {
-    access_token: string;
-}
+
 
 // Function to obtain access token
 export async function getAccessToken(): Promise<string> {
