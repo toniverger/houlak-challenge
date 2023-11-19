@@ -1,9 +1,10 @@
-const fetchAlbums = (artist) => {
-  let draw = Math.floor(Math.random() * 2);
-  if (draw === 1) {
-    return 0;
-  } else {
-    return 6;
+const fetchAlbums = async (artist) => {
+  try {
+    const response = await fetch(`http://localhost:8080/api/artist/${artist}`);
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    throw new Error(e);
   }
 };
 

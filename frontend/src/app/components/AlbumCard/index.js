@@ -24,11 +24,13 @@ export default function AlbumCard({
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            Lanzado el: {releaseDate}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {songs} canciones
           </Typography>
         </CardContent>
       </CardActionArea>
