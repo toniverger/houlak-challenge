@@ -1,43 +1,34 @@
 import express from "express";
+import config from "../config";
+import axios from 'axios'
 
 const router = express.Router();
 
-router.get('/:artist', (req, res) => {
+router.get('/:artist', async (req, res) => {
     const { artist } = req.params
-
-    if (artist === "coldplay") {
-        res.json({
-            "items": [
-                {
-                    "id": "0p9tTwtglBt96GxdQ1WeuO",
-                    "name": "Parachutes",
-                    "release_date": "2000-07-10",
-                    "total_tracks": 10,
-                    "images": [
-                        {
-                            "url": "https://example.com/parachutes_cover.jpg",
-                            "width": 300,
-                            "height": 300
-                        }
-                    ]
-                },
-                {
-                    "id": "4EVpmkEwrLYEg6jIsiPMIb",
-                    "name": "A Rush of Blood to the Head",
-                    "release_date": "2002-08-26",
-                    "total_tracks": 11,
-                    "images": [
-                        {
-                            "url": "https://example.com/a_rush_of_blood_cover.jpg",
-                            "width": 300,
-                            "height": 300
-                        }
-                    ]
-                },
-            ]
+    try {
+        const response = await axios.get(`https://api.spotify.com/v1/search?q=${artist}&type=artist`, {
+            headers: {
+                Authorization: `Bearer ${config.accessToken}`
+            }
         })
-    } else {
-        res.json({ items: [] })
+        if (response.data.artists.items.length === 0) {
+            res.json({ name: "", items: [] })
+            throw new Error("Artist not found")
+        }
+
+        const firstArtist = response.data.artists.items[0]
+        const artistId = firstArtist?.id
+        const artistName = firstArtist?.name
+        const albumsResponse = await axios.get(`https://api.spotify.com/v1/artists/${artistId}/albums`, {
+            headers: {
+                Authorization: `Bearer ${config.accessToken}`
+            }
+        })
+        res.json({ name: artistName, items: albumsResponse.data.items })
+
+    } catch (e) {
+        console.log(e)
     }
 })
 

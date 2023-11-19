@@ -2,6 +2,7 @@ import cors from 'cors'
 
 const ACCPETED_ORIGINS = [
   'http://localhost:3000',
+  'http://localhost:8080/login'
 ]
 
 export const corsMiddelware = ({ acceptedOrigins = ACCPETED_ORIGINS } = {}) => cors({
