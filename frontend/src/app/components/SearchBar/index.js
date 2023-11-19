@@ -1,11 +1,14 @@
+import { useState } from "react";
 import styles from "./index.module.css";
 import TextField from "@mui/material/TextField";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-const SearchBar = () => {
+const SearchBar = ({ setSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   const handleSearchChange = (event) => {
-    console.log(event.target.value);
+    setSearchTerm(event.target.value);
   };
 
   return (
@@ -16,12 +19,15 @@ const SearchBar = () => {
           variant="outlined"
           fullWidth
           style={{ marginRight: "10px" }}
+          onChange={handleSearchChange}
         />
         <IconButton
           size="large"
           variant="contained"
           color="primary"
-          onClick={handleSearchChange}
+          onClick={() => {
+            setSearch(searchTerm);
+          }}
         >
           <SearchIcon />
         </IconButton>
