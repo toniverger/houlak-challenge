@@ -6,15 +6,21 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-export default function AlbumCard({ name, releaseDate, songs, image }) {
+export default function AlbumCard({
+  name,
+  releaseDate,
+  songs,
+  image,
+  albumURI,
+}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image="https://upload.wikimedia.org/wikipedia/en/f/fd/Coldplay_-_Parachutes.png"
-          alt="green iguana"
+          image={image}
+          alt="disc cover"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -29,9 +35,11 @@ export default function AlbumCard({ name, releaseDate, songs, image }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Ver en sporify
-        </Button>
+        <a href={albumURI}>
+          <Button size="small" color="primary">
+            Ver en sporify
+          </Button>
+        </a>
       </CardActions>
     </Card>
   );
