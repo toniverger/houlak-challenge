@@ -20,6 +20,8 @@ const SearchBar = ({ setSearch }) => {
           fullWidth
           style={{ marginRight: "10px" }}
           onChange={handleSearchChange}
+          onKeyDown={(e) => e.key === "Enter" && setSearch(searchTerm)}
+          required
         />
         <IconButton
           size="large"

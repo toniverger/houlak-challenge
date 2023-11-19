@@ -1,16 +1,24 @@
 .main {
-    margin: 0;
-    padding: 0;
-    display: flex;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 .content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-self: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-self: center;
 }
 
 .gridContainer {
-    margin: 0 auto;
-    max-width: 80% 
+  display: flex;
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.loadingContainer {
+  margin: 0 auto;
+  max-width: 80%;
+  display: flex;
+  justify-content: center;
 }

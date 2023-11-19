@@ -6,15 +6,21 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-export default function AlbumCard() {
+export default function AlbumCard({
+  name,
+  releaseDate,
+  songs,
+  image,
+  albumURI,
+}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image="/contemplative-reptile.jpg"
-          alt="green iguana"
+          image={image}
+          alt="disc cover"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -27,9 +33,11 @@ export default function AlbumCard() {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
+        <a href={albumURI}>
+          <Button size="small" color="primary">
+            Ver en sporify
+          </Button>
+        </a>
       </CardActions>
     </Card>
   );
