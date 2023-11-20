@@ -1,5 +1,6 @@
-import styles from "./index.module.css";
 import Typography from "@mui/material/Typography";
+
+import styles from "./index.module.css";
 
 export default function NoSearch() {
   return (

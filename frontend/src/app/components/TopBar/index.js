@@ -1,8 +1,9 @@
-import styles from "./index.module.css";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import ThemeToggleButton from "../ThemeToggle";
+
+import styles from "./index.module.css";
 
 export default function TopBar({ theme, toggleTheme }) {
   return (

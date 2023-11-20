@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import AlbumService from "../services/AlbumService";
 
 const useFetchArtistAlbums = (search, setSearch) => {
@@ -12,7 +13,6 @@ const useFetchArtistAlbums = (search, setSearch) => {
         setLoading(true);
         const data = await AlbumService.fetchAlbums(search);
         setData(data);
-        setLoading(false);
       } catch (error) {
         setError(error);
         setData([]);

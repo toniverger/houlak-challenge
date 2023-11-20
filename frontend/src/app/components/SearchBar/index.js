@@ -1,8 +1,9 @@
 import { useState } from "react";
-import styles from "./index.module.css";
 import TextField from "@mui/material/TextField";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+
+import styles from "./index.module.css";
 
 const SearchBar = ({ setSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");

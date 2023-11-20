@@ -1,6 +1,7 @@
-import styles from "./index.module.css";
 import Typography from "@mui/material/Typography";
 import SearchOffIcon from "@mui/icons-material/SearchOff";
+
+import styles from "./index.module.css";
 
 export default function NoResult({ searchTerm }) {
   return (
