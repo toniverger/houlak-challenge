@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { FetchAlbumResponse, FetchArtistResponse, SpotifyArtist } from '../types';
 import config from '../config';
+import { Searches } from '../database/models/searches';
 
 
 export const getArtistId = async (artist: string) => {
@@ -22,9 +23,14 @@ export const getArtistId = async (artist: string) => {
 
 }
 
-export const getAlbumsFromArtist = async (artist: SpotifyArtist) => {
+export const getAlbumsFromArtist = async (artist: SpotifyArtist, ip: string) => {
     try {
         const { name, id } = artist
+        Searches.create({
+            ip: ip,
+            date: new Date().toLocaleString(),
+            artist: name
+        })
         const albumsResponse = await axios.get<FetchAlbumResponse>(`https://api.spotify.com/v1/artists/${id}/albums`, {
             headers: {
                 Authorization: `Bearer ${config.accessToken}`

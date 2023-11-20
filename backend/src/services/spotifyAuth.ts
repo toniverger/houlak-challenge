@@ -1,12 +1,11 @@
 import axios from 'axios';
 import config from '../config';
 import { SpotifyAuthResponse } from '../types';
+import dotenv from 'dotenv';
 
-const clientId = '83dc7c80f05042209bf90590760eea2a';
-const clientSecret = 'be1504ba6e8c4335a04ee81499b0a96c';
+dotenv.config();
+
 const tokenEndpoint = 'https://accounts.spotify.com/api/token';
-
-
 
 // Function to obtain access token
 export async function getAccessToken(): Promise<string> {
@@ -19,8 +18,8 @@ export async function getAccessToken(): Promise<string> {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             auth: {
-                username: clientId,
-                password: clientSecret,
+                username: `${process.env.CLIENT_ID}`,
+                password: `${process.env.CLIENT_SECRET}`,
             },
         });
 

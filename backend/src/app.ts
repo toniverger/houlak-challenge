@@ -3,6 +3,11 @@ import { corsMiddelware } from './middlewares/cors'
 import artistRoutes from "./routes/artists"
 import { getAccessToken } from './services/spotifyAuth';
 import config from './config';
+import sequelize from './database/db';
+import createDatabase from './database/createDatabase';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const PORT = process.env.PORT ?? 8080
 
@@ -11,6 +16,7 @@ const app = express()
 app.disable('x-powered-by')
 app.use(corsMiddelware())
 app.use(json())
+
 
 getAccessToken()
   .then(() => {
@@ -22,7 +28,15 @@ getAccessToken()
 
 app.use('/api/artist', artistRoutes)
 
+createDatabase().then(() => {
+  sequelize.sync({ force: false }).then(() => {
+    console.log("Connected to database")
+  }).catch(error => {
+    console.log(error)
+  })
+});
+
 app.listen(PORT, () => {
-  getAccessToken()
   console.log(`Server listening on port: ${PORT}`)
 })
+

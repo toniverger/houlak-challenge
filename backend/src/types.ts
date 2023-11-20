@@ -1,3 +1,7 @@
+export interface AppConfig {
+    accessToken?: string;
+}
+
 export interface SpotifyAuthResponse {
     access_token: string;
 }

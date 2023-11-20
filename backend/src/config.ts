@@ -1,6 +1,4 @@
-interface AppConfig {
-    accessToken?: string;
-}
+import { AppConfig } from "./types";
 
 const config: AppConfig = {};
 
