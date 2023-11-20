@@ -26,7 +26,6 @@ getAccessToken()
     console.error('Error during server startup:', error.message);
   });
 
-app.use('/api/artist', artistRoutes)
 
 createDatabase().then(() => {
   sequelize.sync({ force: false }).then(() => {
@@ -35,6 +34,9 @@ createDatabase().then(() => {
     console.log(error)
   })
 });
+
+
+app.use('/api/artist', artistRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`)

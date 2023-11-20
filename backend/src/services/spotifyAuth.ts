@@ -7,7 +7,6 @@ dotenv.config();
 
 const tokenEndpoint = 'https://accounts.spotify.com/api/token';
 
-// Function to obtain access token
 export async function getAccessToken(): Promise<string> {
     try {
         const response = await axios.post<SpotifyAuthResponse>(tokenEndpoint, null, {

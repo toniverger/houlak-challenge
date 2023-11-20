@@ -14,9 +14,9 @@ export interface SpotifyAlbum {
     id: string,
     images: [
         {
-            "url": string,
-            "height": number,
-            "width": number
+            url: string,
+            height: number,
+            width: number
         }
     ],
     name: string,
@@ -39,7 +39,7 @@ export interface SpotifyAlbum {
             uri: string
         }
     ],
-    "album_group": "compilation"
+    album_group: string
 }
 
 export interface SpotifyArtist {
@@ -75,4 +75,9 @@ export interface FetchArtistResponse {
 export interface FetchAlbumResponse {
     name: string;
     items: SpotifyAlbum[]
+}
+
+export interface EmptyResponse {
+    name: string;
+    items: []
 }

@@ -1,29 +1,29 @@
 import axios from 'axios';
-import { FetchAlbumResponse, FetchArtistResponse, SpotifyArtist } from '../types';
+import { FetchAlbumResponse, SpotifyArtist } from '../types';
 import config from '../config';
 import { Searches } from '../database/models/searches';
 
 
-export const getArtistId = async (artist: string) => {
+export const getArtistId = async (artist: string): Promise<SpotifyArtist | null> => {
     try {
-        const response = await axios.get<FetchArtistResponse>(`https://api.spotify.com/v1/search?q=${artist}&type=artist`, {
+        const response = await axios.get(`https://api.spotify.com/v1/search?q=${artist}&type=artist`, {
             headers: {
                 Authorization: `Bearer ${config.accessToken}`
             }
         })
         if (response.data.artists.items.length === 0) {
-            return ([{ name: "", items: [] }])
+            return null
         }
         const firstArtist = response.data.artists.items[0]
         return firstArtist
     } catch (e) {
         console.log(e)
-        return ({ name: "", items: [] })
+        return null
     }
 
 }
 
-export const getAlbumsFromArtist = async (artist: SpotifyArtist, ip: string) => {
+export const getAlbumsFromArtist = async (artist: SpotifyArtist, ip: string): Promise<FetchAlbumResponse> => {
     try {
         const { name, id } = artist
         Searches.create({
@@ -31,7 +31,7 @@ export const getAlbumsFromArtist = async (artist: SpotifyArtist, ip: string) => 
             date: new Date().toLocaleString(),
             artist: name
         })
-        const albumsResponse = await axios.get<FetchAlbumResponse>(`https://api.spotify.com/v1/artists/${id}/albums`, {
+        const albumsResponse = await axios.get(`https://api.spotify.com/v1/artists/${id}/albums`, {
             headers: {
                 Authorization: `Bearer ${config.accessToken}`
             }
