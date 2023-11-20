@@ -18,4 +18,4 @@ In order to run this proyect:
 - in your browser naviagte to `http://localhost:3000`
 
 # Notes
-- An .env file is provided with base backend configuration, feel free to use different configuratio for postgres
+- An .env file is provided with base backend configuration, feel free to use different configuration for your postgres server
