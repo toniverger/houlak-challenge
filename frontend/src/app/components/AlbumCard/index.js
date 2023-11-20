@@ -15,7 +15,7 @@ export default function AlbumCard({
 }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+      <CardActionArea style={{ pointerEvents: "none" }}>
         <CardMedia
           component="img"
           height="140"
@@ -30,7 +30,7 @@ export default function AlbumCard({
             Lanzado el: {releaseDate}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {songs} canciones
+            {songs} {songs > 1 ? "canciones" : "cancion"}
           </Typography>
         </CardContent>
       </CardActionArea>

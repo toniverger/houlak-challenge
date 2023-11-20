@@ -11,41 +11,23 @@ import SearchBar from "./components/SearchBar";
 import AlbumCard from "./components/AlbumCard";
 import Grid from "@mui/material/Grid";
 import Zoom from "@mui/material/Zoom";
-import AlbumService from "./services/AlbumService";
 import { CircularProgress } from "@mui/material";
+import useFetchArtistAlbums from "./hooks/useFetchArtist";
 
 export default function Home() {
   const [theme, setTheme] = useState(lightTheme);
   const [search, setSearch] = useState();
-  const [resultArray, setResultArray] = useState([]);
-  const [resultName, setResultName] = useState("");
-  const [loading, setloading] = useState(false);
+  const { data, loading, error } = useFetchArtistAlbums(search, setSearch);
+
+  if (error) {
+    console.log(error);
+  }
 
   const toggleTheme = () => {
     setTheme((prevTheme) =>
       prevTheme.palette.mode === "light" ? darkTheme : lightTheme
     );
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setloading(true);
-      try {
-        const data = await AlbumService.fetchAlbums(search);
-        setResultArray(data.items);
-        setResultName(data.name);
-        setloading(false);
-      } catch (error) {
-        setResultArray([]);
-        setloading(false);
-      }
-    };
-    if (search && search.trim() !== "") {
-      fetchData(search);
-    } else {
-      setSearch("");
-    }
-  }, [search]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -61,16 +43,16 @@ export default function Home() {
       ) : (
         <div className={styles.gridContainer}>
           <Grid container spacing={2}>
-            {resultArray.length === 0 ? (
+            {data.items.length === 0 ? (
               <NoResult searchTerm={search} />
             ) : (
               <>
                 <div style={{ width: "100%", textAlign: "center" }}>
                   <Typography variant="h6" color="primary" fontSize="1rem">
-                    Mostrando resultados de {resultName}
+                    Mostrando resultados de {data.name}
                   </Typography>
                 </div>
-                {resultArray.map((album, index) => {
+                {data.items.map((album, index) => {
                   return (
                     <Zoom
                       in
