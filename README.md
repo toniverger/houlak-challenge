@@ -4,12 +4,13 @@ Spotify challenge for Houlak
 # Description & installation
 This is the repo for the houlak challenge
 
-- Frontend: NextJS v14 (minimum node version: v18.17)
+- Frontend: NextJS v14
 - Backend: NodeJS
 - Database: Postgres v14.9
 
 In order to run this proyect:
-- install postgres and run a server if you already dont have one.
+- install node v18.17 or above.
+- install postgres and run a server if you dont have one already.
 - in root run `npm run install` this will install all dependencies of both forntend and backend.
 - run `npm start:backend` to start backend server
 - open another terminal
